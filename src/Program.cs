@@ -5,12 +5,7 @@ class Program
 {
   static void Main(string[] args)
   {
-    var processesToKill = new string[]{
-      "OVRRedir",
-      "OVRServer_x64",
-      "OVRServiceLauncher",
-      "PnkBstrA",
-    };
+    var processesToKill = File.ReadAllLines(".\\processes.txt");
 
     var processMap = new Dictionary<string, List<Process>>();
 
@@ -26,7 +21,7 @@ class Program
 
 
     Console.WriteLine($"Current running processes ({processMap.Keys.Count}):");
-    foreach (var processName in processMap.Keys.OrderBy(x => x).ToArray())
+    foreach (var processName in processMap.Keys.OrderBy(x => x))
     {
       Console.WriteLine($"  - {processName}");
     }
